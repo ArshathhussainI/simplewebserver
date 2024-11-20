@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:27-02-2024
+## Date:20-11-2024
 
 ## AIM:
 To develop a simple webserver to serve html pages.
@@ -7,6 +7,7 @@ To develop a simple webserver to serve html pages.
 ## DESIGN STEPS:
 ### Step 1: 
 HTML content creation.
+
 
 ### Step 2:
 Design of webserver workflow.
@@ -21,69 +22,28 @@ Serving the HTML pages.
 Testing the webserver.
 
 ## PROGRAM:
-```
-from http.server import HTTPServer, BaseHTTPRequestHandler
-content = """
-<html>
-<head>
-<title>Top five software companies in revenue</title>
-</head>
-<body>
-<h1 align="center">
-TOP FIVE SOFTWARE COMPANIES IN REVENUE</h1>
-<table align="center" border="2" cellspacing="5" cellpadding="5" width="800" height="500">
-<tr>
-<th>RANK</th>
-<th>COMPANY NAME</th>
-<th>REVENUE</th>
-</tr>
-<tr>
-<td>1</td>
-<td>Apple(AAPL)</td>
-<td>$385.70 B </td>
-</tr>
-<tr>
-<td>2</td>
-<td>Alphabet(Google)</td>
-<td>$307.39 B</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Microsoft</td>
-<td>$227.58 B</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Ibm</td>
-<td>$61.85 B</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Oracle</td>
-<td>$51.62 B</td>
-</tr>
-</table>
-</body>
-</html>
+''' from http.server import HTTPServer,BaseHTTPRequestHandler
 
-"""
-class myhandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        print("request received")
-        self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
-        self.end_headers()
-        self.wfile.write(content.encode())
-server_address = ('',8000)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
-httpd.serve_forever()
-```
+content='''
+
+LAPTOP CONFIGURATION
+System configuration	Description
+Processor	i5
+Primary Memory	Ram 16 GB
+Secondary Memory	512 GB
+0.S	Windows 11
+Graphic	nvidia
+</body>
+'''
+class MyServer(BaseHTTPRequestHandler): def do_GET(self): print("Get request received...") self.send_response(200) self.send_header("content-type", "text/html")
+self.end_headers() self.wfile.write(content.encode())
+
+print("This is my webserver") server_address =('',8000) httpd = HTTPServer(server_address,MyServer) httpd.serve_forever() '''
 
 ## OUTPUT:
-![alt text](<Screenshot (430).png>)
 
-![alt text](<Screenshot (431).png>)
+![380017945-18a9c0f7-2f55-4b59-9c71-e762b01473de](https://github.com/user-attachments/assets/a84ab4e4-79e9-46d4-be62-1afb8bd419ad)
+
 
 ## RESULT:
 The program for implementing simple webserver is executed successfully.
