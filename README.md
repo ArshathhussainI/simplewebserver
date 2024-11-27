@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:
+## Date:27-11-2024
 
 ## AIM:
 To develop a simple webserver to serve html pages and display the configuration details of laptop.
@@ -22,9 +22,75 @@ Testing the webserver.
 
 ## PROGRAM:
 
+from http.server import HTTPServer,BaseHTTPRequestHandler
+
+content='''
+<!doctype html>
+<html>
+<head>
+<title> My Web Server</title>
+</head>
+<body>
+<h1><center>My Laptop Configuration Details</center></h1>
+   <table border="1" cellpadding="10" align="center">
+        <tr>
+            <th bgcolor="yellow">Specification</th>
+            <th bgcolor="red">Details</th>
+        </tr>
+        <tr>
+            <td>Model</td>
+            <td>Lenovo ThinkPad i5</td>
+        </tr>
+        <tr>
+            <td>Processor</td>
+            <td>Intel Core i5</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>8GB</td>
+        </tr>
+        <tr>
+            <td>Storage</td>a
+            <td>256GB SSD</td>
+        </tr>
+        <tr>
+            <td>Graphics</td>
+            <td>Integrated Intel UHD Graphics</td>
+        </tr>
+        <tr>
+            <td>Display</td>
+            <td>14-inch FHD (1920 x 1080)</td>
+        </tr>
+        <tr>
+            <td>Operating System</td>
+            <td>Windows 10</td>
+        </tr>
+        <tr>
+            <td>Colours available</td>
+            <td>Black,White,Grey</td>
+        </tr>
+    </table>
+</body>
+</html>
+'''
+
+class MyServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
+        self.end_headers()
+        self.wfile.write(content.encode())
+
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
+httpd.serve_forever()
 
 ## OUTPUT:
+![384571037-899a96e6-b50e-4420-bd56-4ae77633af61](https://github.com/user-attachments/assets/839b86ba-3f3e-463d-9ed4-74e6818b6a93)
 
+![384571173-03834a12-bf2c-4495-8ff6-7302c16a1aaf](https://github.com/user-attachments/assets/fb4932d4-f820-4766-947d-25a24ee0106e)
 
 ## RESULT:
 The program for implementing simple webserver is executed successfully.
